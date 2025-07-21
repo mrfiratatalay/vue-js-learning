@@ -13,3 +13,4 @@
 <script setup>
 import SocialPost from './components/molecules/SocialPost.vue';
 </script>
+
