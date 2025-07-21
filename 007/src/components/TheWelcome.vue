@@ -13,6 +13,13 @@
     :post="posts[1].post"
     :comments="posts[1].comments"
   ></SocialPost>
+  <SocialPost
+    :username="posts[2].username"
+    :userId="posts[2].userId"
+    :avatarSrc="posts[2].avatar"
+    :post="posts[2].post"
+    :comments="posts[2].comments"
+  ></SocialPost>
 </template>
 
 <script setup>
@@ -41,7 +48,22 @@ const posts = reactive([
       "tag 1",
       "tag 2"
     ]
+  },
+  {
+    username: "Username three",
+    userId: "usernameId3",
+    avatar: "https://i.pravatar.cc/60",
+    post: "This is my third post",
+    comments: [
+      "awesome post"
+    ],
+    tags: [
+      "tag 1",
+      "tag 2",
+      "tag 3"
+    ]
   }
+
 ]);
 
 </script>
