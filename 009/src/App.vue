@@ -1,12 +1,10 @@
-<template>
-    <TheHeader />
-    <TheWelcome />
-</template>
-
 <script setup>
-import TheHeader from './components/organisms/TheHeader.vue';
-import TheWelcome from './components/TheWelcome.vue';
+import { RouterView } from 'vue-router'
 </script>
+
+<template>
+  <RouterView />
+</template>
 
 <style scoped>
 </style>
