@@ -1,14 +1,15 @@
 <template>
     <div>
-        <TheButton
+        <!-- <TheButton
             value="Click Me"
             width="150px"
-        />
+        /> -->
+        <SideBar />
     </div>
 </template>
 
 <script setup>
-import TheButton from './components/atoms/TheButton.vue';
+import SideBar from './components/organisms/SideBar.vue';
 </script>
 
 <style lang="scss" scoped>
