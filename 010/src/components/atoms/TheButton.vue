@@ -1,17 +1,15 @@
 <template>
-    <div>
-        <h1>I learned props configurations</h1>
-        <button :class="theme">{{value}}</button>
-    </div>
+    <button
+        :class="theme"
+    >
+     {{  value  }}
+    </button>
 </template>
-
 <script setup>
-import { defineProps } from 'vue';
-
-const props = defineProps({
+defineProps({
     value: {
         type: [String, Number],
-        required:true
+        required: true
     },
     width: {
         type: String,
@@ -24,17 +22,16 @@ const props = defineProps({
     }
 })
 </script>
-
 <style scoped>
 button {
-  width: v-bind(width);
+    width: v-bind(width);
 }
 .light {
-  background-color: #1DA1F2;
-  color: white;
+    background-color: #1DA1F2;
+    color: white;
 }
 .dark {
-  background-color: black;
-  color: #1DA1F2;
+    background-color: black;
+    color: #1DA1F2;
 }
 </style>

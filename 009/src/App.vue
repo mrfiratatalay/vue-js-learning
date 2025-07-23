@@ -1,10 +1,15 @@
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
-  <RouterView />
+    <div>
+        <TheButton
+            value="Click Me"
+            width="150px"
+        />
+    </div>
 </template>
 
-<style scoped>
+<script setup>
+import TheButton from './components/atoms/TheButton.vue';
+</script>
+
+<style lang="scss" scoped>
 </style>
