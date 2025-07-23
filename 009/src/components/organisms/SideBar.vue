@@ -5,7 +5,7 @@
         <div>
             Current Time: {{currentTime}}
         </div>
-        <button @click="onUpdateTimeClick">Update Time</button>
+        <button @click.once="onUpdateTimeClick">Update Time</button>
    </aside>
 </template>
 
