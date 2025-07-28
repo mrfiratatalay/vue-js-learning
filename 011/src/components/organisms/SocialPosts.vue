@@ -1,13 +1,12 @@
 <template>
     <SocialPost
         v-for="(post, index) in posts"
-        :key="post.userId"
-        :username="post.username"
-        :userId="post.userId"
-        :avatarSrc="post.avatar"
-        :comments="post.comments"
+        :key="post.id"
+        :username="post.owner.firstName"
+        :id="post.id"
+        :avatarSrc="post.image"
+        :post="post.text"
         :likes="post.likes"
-        :retweets="post.retweets"
         @delete="onDelete(index)"
     />
 </template>
@@ -21,32 +20,21 @@ const onDelete = (postIndex) => {
 }
 
 
-const posts = reactive([
-    { username: "Username one",
-      userId: "@usernameId1",
-      avatar: "https://i.pravatar.cc/60",
-      post: "This is my post",
-      comments: [
-        "great post",
-        "amazing post"
-      ],
-      likes: 2,
-      retweets: 1,
-      tags: [
-        "tag 1"
-      ]
-    },
-    { username: "Username two",
-      userId: "@usernameId2",
-      avatar: "https://i.pravatar.cc/70",
-      post: "This is my second post",
-      comments: [],
-      likes: 3,
-      retweets: 1,
-      tags: [
-        "tag 1",
-        "tag 2"
-      ]
+const posts = reactive([]);
+
+const fetchPosts = () => {
+  const baseUrl = "https://dummyapi.io/data/v1";
+  fetch(`${baseUrl}/post?limit=5`, {
+    headers: {
+      "app-id": "657a3106698992f50c0a5885"
     }
-  ]);
+  })
+    .then(response => response.json())
+    .then(result => {
+      posts.push(...result.data);
+    });
+}
+
+fetchPosts();
+
 </script>

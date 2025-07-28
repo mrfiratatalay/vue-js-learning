@@ -3,18 +3,19 @@
         <div class="header">
             <img class="avatar" :src="avatarSrc"/>
             <div class="name">{{ username }}</div>
-            <div class="userId">{{ userId }}</div>
             <IconDelete @click="onDeleteClick" />
         </div>
         <div class="post" v-text="post"></div>
-        <SocialPostComments v-if="showComments" :comments="comments"/>
+        <SocialPostComments
+          v-if="showComments"
+          :post-id="id"
+
+        />
         <div class="interactions">
             <IconHeart />
-            {{ interactions }}
+            {{ likes }}
             <IconCommunity />
-            {{ commentsNumber }}
             <TheButton
-                v-show="hasComments"
                 @click="onShowCommentClick"
                 value="Show Comment"
                 width="auto"
@@ -26,7 +27,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import TheButton from '../atoms/TheButton.vue';
 import IconCommunity from '../icons/IconCommunity.vue';
 import IconDelete from '../icons/IconDelete.vue';
@@ -40,25 +41,12 @@ const onShowCommentClick = () => {
 
 const props = defineProps({
     username: String,
-    userId: String,
+    id: String,
     avatarSrc: String,
     post: String,
-    comments: Array,
     likes: Number,
-    retweets: Number
 });
 
-const hasComments = computed(() => {
-  return props.comments.length > 0;
-});
-
-const commentsNumber = computed(() => (
-    props.comments.length))
-
-const interactions = computed(() => {
-    const comments = props.comments.length;
-    return comments + props.likes + props.retweets;
-})
 
 const emit = defineEmits(["delete"]);
 const onDeleteClick = () => {
@@ -87,7 +75,7 @@ const onDeleteClick = () => {
   .name {
     font-weight: bold;
     margin-right: 8px;
-    color: white;
+    color: black;  // veya #333
   }
   .interactions {
     display: flex;
