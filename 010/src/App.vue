@@ -1,10 +1,9 @@
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
-  <RouterView />
+  <TheHeader />
+  <SocialPosts />
 </template>
 
-<style scoped>
-</style>
+<script setup>
+import SocialPosts from "./components/organisms/SocialPosts.vue";
+import TheHeader from "./components/organisms/TheHeader.vue";
+</script>

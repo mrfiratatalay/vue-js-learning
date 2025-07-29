@@ -1,21 +1,20 @@
 <template>
     <header>
         <TheLogo />
-        <h1>Companion app</h1>
+        <h1>Companion App</h1>
         <span>
-            <a href="#">
-                Welcome {{ username }}
-            </a>
-            <IconSettings class="settings" />
+            <a href="#">Welcome {{username}}</a>
+            <IconSettings class="settings"/>
         </span>
     </header>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import TheLogo from '../atoms/TheLogo.vue';
-import IconSettings from '../icons/IconSettings.vue';
-const username = ref("Zelig880");
+import { ref } from "vue";
+import TheLogo from "../atoms/TheLogo.vue";
+import IconSettings from "../icons/IconSettings.vue";
+
+const username = ref("FiratAtalay");
 </script>
 
 <style lang="scss">

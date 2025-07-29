@@ -1,38 +1,43 @@
 <template>
-  <div class="SocialPostComments">
-      <p>Comments:</p>
-      <div v-for="(comment, index) in comments" class="comment">
-        <p>{{ comment }}</p>
-        <IconDeleteVue />
-      </div>
-  </div>
+    <template v-if="comments.length === 0">
+    There are no comments for this post
+    </template>
+
+    <template v-else>
+        <p>Comments:</p>
+        <div v-for="{ owner, message } in comments" :key="owner.id" class="comment">
+            <p>{{ owner.firstName }}: <strong>{{ message }}</strong></p>
+        </div>
+    </template>
 </template>
-  
-<script setup >
-import IconDeleteVue from '../icons/IconDelete.vue';
+
+<script setup>
+import { reactive } from "vue";
+const comments = reactive([]);
+
 const props = defineProps({
-  comments: Array
+    postId: String
 })
+
+const fetchComments = (postId) => {
+    const baseUrl = "https://dummyapi.io/data/v1";
+    fetch(`${baseUrl}/post/${postId}/comment?limit=5`, {
+        headers: { "app-id": "657a3106698992f50c0a5885" }
+    })
+        .then(response => response.json())
+        .then(result => {
+            Object.assign(comments, result.data)
+        });
+}
+fetchComments(props.postId);
 </script>
-  
-<style lang="scss">
-.SocialPostComments{
-  padding-left:24px;
-  p {
-    font-weight: bold;
-  }
-  .comment {
-    display:flex;
-    justify-content: space-between;
-    background-color: var(--color-input-mute);
-    border-radius: 10px;
-    margin-bottom: 8px;
-    padding:8px 16px;
-    color:var(--color-background-soft);
-    width: 75%;
-  }
-  svg {
-    fill:var(--color-background-mute);
-  }
+
+
+<style scoped>
+.comment {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-left: 3px solid #ccc;
+    background-color: #f9f9f9;
 }
 </style>
