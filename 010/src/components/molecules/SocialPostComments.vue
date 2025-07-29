@@ -13,15 +13,16 @@
 
 <script setup>
 import { reactive } from "vue";
-const comments = reactive([]);
 
 const props = defineProps({
     postId: String
 })
+const comments = reactive([]);
+
 
 const fetchComments = (postId) => {
     const baseUrl = "https://dummyapi.io/data/v1";
-    fetch(`${baseUrl}/post/${postId}/comment?limit=5`, {
+    return fetch(`${baseUrl}/post/${postId}/comment?limit=5`, {
         headers: { "app-id": "657a3106698992f50c0a5885" }
     })
         .then(response => response.json())
@@ -29,7 +30,7 @@ const fetchComments = (postId) => {
             Object.assign(comments, result.data)
         });
 }
-fetchComments(props.postId);
+await fetchComments(props.postId);
 </script>
 
 
