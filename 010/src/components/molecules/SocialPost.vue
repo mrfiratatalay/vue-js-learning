@@ -51,7 +51,7 @@ const props = defineProps({
     id: String,
     avatarSrc: String,
     post: String,
-    likes: Number,
+    likes: Number
 });
 
 
