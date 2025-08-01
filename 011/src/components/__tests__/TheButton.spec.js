@@ -12,5 +12,16 @@ describe('TheButton.vue', () => {
             const wrapper = mount(component, {});
             expect(wrapper.classes()).toContain('light');
         });
+
+        it("renders dark theme when theme prop is dark", () => {
+            const wrapper = mount(component, {
+                props: {
+                    value: "Test Button",
+                    theme: "dark"
+                }
+            });
+
+            expect(wrapper.classes()).toContain("dark");
+        })
     });
 });
