@@ -17,7 +17,7 @@ defineProps({
     },
     theme: {
         type: String,
-        default: "dark",
+        default: "light",
         validator: (value) => ["light", "dark"].includes(value)
     }
 
