@@ -1,14 +1,16 @@
 <template>
-    <template v-if="comments.length === 0">
-    There are no comments for this post
-    </template>
+    <div class="SocialPostComments">
+        <template v-if="comments.length === 0">
+        There are no comments for this post
+        </template>
 
-    <template v-else>
-        <p>Comments:</p>
-        <div v-for="{ owner, message } in comments" :key="owner.id" class="comment">
-            <p>{{ owner.firstName }}: <strong>{{ message }}</strong></p>
-        </div>
-    </template>
+        <template v-else>
+            <p>Comments:</p>
+            <div v-for="{ owner, message } in comments" :key="owner.id" class="comment">
+                <p>{{ owner.firstName }}: <strong>{{ message }}</strong></p>
+            </div>
+        </template>
+    </div>
 </template>
 
 <script setup>
