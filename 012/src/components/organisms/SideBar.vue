@@ -1,7 +1,6 @@
 <template>
     <aside>
         <h2>Sidebar</h2>
-        <TheButton value="Create Post"/>
         <div>
             Current time: {{currentTime}}
         </div>

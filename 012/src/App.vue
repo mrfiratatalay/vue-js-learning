@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <CreatePost />
-  </div>
+  <TheHeader />
+  <SideBar />
 </template>
 
 <script setup>
-import CreatePost from './components/molecules/CreatePost.vue';
+//import SocialPosts from "./components/organisms/SocialPosts.vue";
+import SideBar from "./components/organisms/SideBar.vue";
+import TheHeader from "./components/organisms/TheHeader.vue";
 </script>
