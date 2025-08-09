@@ -11,11 +11,17 @@
                 Current time: {{currentTime}}
             </div>
             <TheButton @click="onUpdateTimeClick">Update Time</TheButton>
+
+            <router-link to="privacy">Privacy</router-link>
+            <router-link to="about">About</router-link>
+
+            <a @click="navigateToPrivacy">Programmatic to privacy</a>
         </template>
     </aside>
 </template>
 <script setup>
 import { onBeforeMount, ref } from 'vue';
+import { RouterLink, useRouter } from 'vue-router';
 import TheButton from '../atoms/TheButton.vue';
 import IconLeftArrow from '../icons/IconLeftArrow.vue';
 import IconRightArrow from '../icons/IconRightArrow.vue';
@@ -33,6 +39,17 @@ onBeforeMount( async () => {
     const sidebarState = window.localStorage.getItem("sidebar");
     closed.value = sidebarState === "true";
 });
+
+
+
+const router = useRouter()
+const navigateToPrivacy = (event) => {
+    event.preventDefault();
+    console.log("Run a side effect");
+    router.push("privacy");
+}
+
+
 </script>
 <style scoped lang="scss">
 aside {
