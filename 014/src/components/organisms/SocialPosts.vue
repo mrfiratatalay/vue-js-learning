@@ -7,18 +7,20 @@
     :post="post.text"
     :likes="post.likes"
     :key="post.id"
+    :postData="post"
+
     @delete="onDelete(index)"
   ></SocialPost>
 </template>
-  
+
 <script setup>
   import { reactive, ref, watch } from 'vue';
-  import SocialPost from '../molecules/SocialPost.vue'
+import SocialPost from '../molecules/SocialPost.vue';
 
   const onDelete = ( postIndex ) => {
     posts.splice(postIndex, 1);
   }
-  
+
   const posts = reactive([]);
   const page = ref(0);
   watch(
@@ -43,6 +45,5 @@
       })
   }
   fetchPosts();
-  
+
   </script>
-  

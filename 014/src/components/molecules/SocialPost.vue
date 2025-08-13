@@ -1,9 +1,13 @@
 <template>
   <div
-    class="SocialPost" 
+    class="SocialPost"
   >
     <div class="header">
-      <img class="avatar" :src="avatarSrc" />
+      <img
+        class="avatar"
+        :src="avatarSrc"
+        @click="navigateToUser"
+      />
       <div class="name">{{ username }}</div>
       <IconDelete @click="onDeleteClick" role="button" />
     </div>
@@ -17,7 +21,7 @@
         fetching comments...
       </template>
     </Suspense>
-    
+
     <div class="interactions">
       <IconHeart />
       {{ likes }}
@@ -32,16 +36,19 @@
 </template>
 
 <script setup >
-import { onMounted, ref, computed } from 'vue';
-import SocialPostComments from './SocialPostComments.vue';
-import IconHeart from '../icons/IconHeart.vue';
-import IconDelete from '../icons/IconDelete.vue';
+import { onMounted, ref } from 'vue';
+import { useRouter } from "vue-router";
 import TheButton from '../atoms/TheButton.vue';
+import IconDelete from '../icons/IconDelete.vue';
+import IconHeart from '../icons/IconHeart.vue';
+import SocialPostComments from './SocialPostComments.vue';
 
-const showComments = ref(false); 
-const onShowCommentClick = () => { 
+
+
+const showComments = ref(false);
+const onShowCommentClick = () => {
   console.log("Showing comments");
-  showComments.value = !showComments.value; 
+  showComments.value = !showComments.value;
 }
 
 const props = defineProps({
@@ -49,8 +56,21 @@ const props = defineProps({
   id: String,
   avatarSrc: String,
   post: String,
-  likes: Number
+  likes: Number,
+  postData: Object
 });
+
+const router = useRouter();
+const navigateToUser = () => {
+  router.push({
+    name: "user",
+    params: {
+      userId: props.postData.owner.id
+    }
+  })
+}
+
+
 
 onMounted( () => {
   console.log(props.username);
@@ -79,7 +99,7 @@ const onDeleteClick = () => {
   .name {
     font-weight: bold;
     margin-right: 8px;
-    color: white;
+    color: black;
   }
   .interactions {
     display: flex;
