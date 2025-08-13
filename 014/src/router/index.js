@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AboutView from '../views/AboutView.vue'
 import HomeView from '../views/HomeView.vue'
 import PrivacyView from '../views/PrivacyView.vue'
-import UserView from '../views/UserView.vue'
+import UserPostsView from '../views/UserPostsView.vue'
+import UserProfileView from '../views/UserProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,12 +21,25 @@ const router = createRouter({
     {
       path: '/privacy',
       name: 'privacy',
+      alias: "/privacy-policy",
       component: PrivacyView
     },
     {
       path: "/user/:userId",
       name: "user",
-      component: UserView
+      redirect: { name: "user-profile" },
+      children: [
+        {
+          path: "profile",
+          name: "user-profile",
+          component: UserProfileView
+        },
+        {
+          path: "posts",
+          name: "user-posts",
+          component: UserPostsView
+        }
+      ]
     }
   ]
 })
