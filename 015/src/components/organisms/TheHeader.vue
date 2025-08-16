@@ -6,16 +6,22 @@
             <a href="#">
                 Welcome {{ username }}
             </a>
-            <IconSettings class="settings" />
+            <IconSettings class="settings" @click="sidebarStore.toggleSidebar" />
+            <p>Sidebar state: {{ sidebarStore.friendlyState }}</p>
         </span>
     </header>
 </template>
 
 <script setup>
+import { useSidebarStore } from '../../stores/sidebar';
+
 import { ref } from 'vue';
 import TheLogo from '../atoms/TheLogo.vue';
 import IconSettings from '../icons/IconSettings.vue';
-const username = ref("Zelig880");
+
+
+const username = ref("Fırat");
+const sidebarStore = useSidebarStore();
 </script>
 
 <style lang="scss">
