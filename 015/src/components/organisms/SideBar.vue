@@ -1,5 +1,5 @@
 <template>
-    <aside :class="{ 'sidebar__closed': closed}">
+    <aside :class="{ 'sidebar__closed': sidebarStore.closed}">
         <template v-if="sidebarStore.closed">
             <IconRightArrow class="sidebar__icon" @click="sidebarStore.toggleSidebar" />
         </template>
@@ -20,9 +20,9 @@
     </aside>
 </template>
 <script setup>
-import { useSidebarStore } from '../../stores/sidebar';
 import { onBeforeMount, ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
+import { useSidebarStore } from '../../stores/sidebar';
 import TheButton from '../atoms/TheButton.vue';
 import IconLeftArrow from '../icons/IconLeftArrow.vue';
 import IconRightArrow from '../icons/IconRightArrow.vue';
