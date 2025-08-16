@@ -6,21 +6,20 @@
             <a href="#">
                 Welcome {{ username }}
             </a>
-            <IconSettings class="settings" @click="sidebarStore.toggleSidebar" />
+            <IconSettings class="icon" />
+            <IconFullScreen class="icon" @click="sidebarStore.toggleSidebar" />
             <p>Sidebar state: {{ sidebarStore.friendlyState }}</p>
         </span>
     </header>
 </template>
 
 <script setup>
-import { useSidebarStore } from '../../stores/sidebar';
-
 import { ref } from 'vue';
+import { useSidebarStore } from '../../stores/sidebar';
 import TheLogo from '../atoms/TheLogo.vue';
+import IconFullScreen from '../icons/IconFullScreen.vue';
 import IconSettings from '../icons/IconSettings.vue';
-
-
-const username = ref("Fırat");
+const username = ref("Fırat Atalay");
 const sidebarStore = useSidebarStore();
 </script>
 
@@ -44,10 +43,12 @@ header {
         margin-right:8px;
         font-weight: bolder;
     }
-    .settings {
+    .icon {
         width: 16px;
         height: 16px;
         fill: var(--color-input-mute);
+        margin-right: 5px;
+        cursor: pointer;
     }
 }
 
