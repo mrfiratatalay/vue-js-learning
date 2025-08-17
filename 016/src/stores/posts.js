@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const usePostsStore = defineStore("posts", {
     state: () => (
-        { posts: [], page: 0 }
+        { posts: [], page: 0, inProgress: true }
     ),
 
     actions: {
@@ -24,6 +24,28 @@ export const usePostsStore = defineStore("posts", {
 
         removePost(postIndex) {
             this.posts.splice(postIndex, 1);
+        },
+
+
+        toggleInProgress() {
+            this.inProgress = !this.inProgress;
+        },
+        addPost(postText) {
+            const post = generatePostStructure(postText);
+            this.posts.unshift(post);
+            this.toggleInProgress();
         }
     }
 })
+
+const generatePostStructure = (postText) => {
+    return {
+        id: "60d0fe4f5311236168a100cs",
+        owner: {
+            firstName: "Fırat Atalay",
+        },
+        image: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=40",
+        text: postText,
+        likes: 0
+    }
+}
