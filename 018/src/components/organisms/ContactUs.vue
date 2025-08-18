@@ -1,14 +1,36 @@
 <template>
-    <form @submit="handleSubmit">
+    <Form @submit="handleSubmit">
         <label for="email">Email</label>
+        <Field
+            id="email"
+            type="email"
+            name="email"
+            rules="required"
+        ></Field>
+        <ErrorMessage as="span" name="email" class="error"/>
+
         <label for="message">Message</label>
+        <Field
+            id="message"
+            as="textarea"
+            name="message"
+        ></Field>
         <TheButton>Send</TheButton>
-    </form>
+    </Form>
 </template>
 
 <script setup>
+import { ErrorMessage, Field, Form, defineRule } from 'vee-validate';
 import TheButton from "../atoms/TheButton.vue";
-const handleSubmit = ({email, message}) => {
+
+defineRule("required", value => {
+    if (!value || !value.length) {
+        return "This field is required";
+    }
+    return true;
+})
+
+const handleSubmit = ({ email, message }) => {
     console.log("email:", email);
     console.log("message:", message)
 }
