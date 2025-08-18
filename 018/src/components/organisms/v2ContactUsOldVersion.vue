@@ -5,7 +5,7 @@
             id="email"
             type="email"
             name="email"
-            rules="required|email"
+            rules="required"
         ></Field>
         <ErrorMessage as="span" name="email" class="error"/>
 
@@ -14,23 +14,21 @@
             id="message"
             as="textarea"
             name="message"
-            rules="required|min:100"
         ></Field>
-        <ErrorMessage as="span" name="message" class="error"/>
-
         <TheButton>Send</TheButton>
     </Form>
 </template>
 
 <script setup>
-import { email, min, required } from "@vee-validate/rules";
 import { ErrorMessage, Field, Form, defineRule } from 'vee-validate';
 import TheButton from "../atoms/TheButton.vue";
 
-defineRule("required", required);
-defineRule("email", email);
-defineRule("min", min);
-
+defineRule("required", value => {
+    if (!value || !value.length) {
+        return "This field is required";
+    }
+    return true;
+})
 
 const handleSubmit = ({ email, message }) => {
     console.log("email:", email);
