@@ -1,16 +1,12 @@
 <template>
-    <form v-show="postsStore.inProgress" @submit.prevent="createPostHandler">
+    <form v-show="postsStore.inProgress" ref="createPostForm" @submit="createPostHandler">
         <h2>Create a Post</h2>
-        <label for="post">Enter your post body:</label>
         <textarea
             rows="4"
             cols="20"
             ref="textareaRef"
             required="true"
             minlength="10"
-            v-model="postText"
-            name="post"
-            id="post"
         ></textarea>
         <TheButton>Create Post</TheButton>
     </form>
@@ -25,11 +21,13 @@ const { addPost } = postsStore;
 
 
 const textareaRef = ref(null);
-
-const postText = ref("");
+const createPostForm = ref(null);
 
 const createPostHandler = (event) => {
-    addPost(postText.value);
+    event.preventDefault();
+    if(createPostForm.value.reportValidity()){
+        addPost(textareaRef.value.value);
+    };
 }
 
 onMounted( () => {
