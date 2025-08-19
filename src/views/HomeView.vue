@@ -1,7 +1,7 @@
 <script setup>
-import SocialPosts from '../components/organisms/SocialPosts.vue'
-import CreatePost from '../components/molecules/CreatePost.vue'
-import SideBar from '../components/organisms/SideBar.vue'
+import CreatePost from '../components/molecules/CreatePost.vue';
+import SideBar from '../components/organisms/SideBar.vue';
+import SocialPosts from '../components/organisms/SocialPosts.vue';
 import TheHeader from '../components/organisms/TheHeader.vue';
 </script>
 
@@ -15,7 +15,7 @@ import TheHeader from '../components/organisms/TheHeader.vue';
 </template>
 <style>
 @import '../assets/base.css';
-aside { 
+aside {
   border-right: 1px solid var(--color-border);
   padding: 16px 32px;
 }
